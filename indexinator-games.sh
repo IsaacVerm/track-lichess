@@ -20,9 +20,10 @@ curl -X GET \
   > games.jsonl
 
 cat games.jsonl | \
-    jq '[.]' \
+    jq -s '.' \
     > games.json
 
 cat games.json | \
-    jq '[ .[] | {id, clocks, analysis, clock} ] | map(.clocks |= [range(1; length; 2) as $i | .[$i]])' \
+    jq '[ .[] | {id, clocks, analysis, clock} ]
+    | map(.clocks |= range(1; length; 2) as $i | .[$i])' \
     > test-move-times.json
