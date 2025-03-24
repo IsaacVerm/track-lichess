@@ -24,5 +24,6 @@ cat games.jsonl | \
     > games.json
 
 cat games.json | \
-    jq '[.[] | {id, clocks, analysis, clock}]' \
-    > test-move-times.json
+    jq '[.[] | {id, clocks, analysis, clock}]
+    | map(.clocks |= [range(1; length; 2) as $i | .[$i]])' \
+    > move-times.json
