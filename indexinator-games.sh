@@ -24,7 +24,5 @@ cat games.jsonl | \
     > games.json
 
 cat games.json | \
-    jq '.[] | {id, clocks, analysis, clock}' | \
-    # reading the file again with --slurp so it's not ndjson but JSON: an array of objects
-    jq -s '.' \
-    > move-times.json
+    jq '[ .[] | {id, clocks, analysis, clock} ] | map(.clocks |= [range(1; length; 2) as $i | .[$i]])' \
+    > test-move-times.json
