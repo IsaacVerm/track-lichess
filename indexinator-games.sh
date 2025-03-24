@@ -12,6 +12,7 @@ curl -X GET \
   --data "since=1742830512000" \
   --data "rated=true" \
   --data "perfType=blitz" \
+  --data "color=white" \
   --data "analysed=true" \
   --data "clocks=true" \
   --data "evals=true" \
