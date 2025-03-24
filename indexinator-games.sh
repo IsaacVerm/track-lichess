@@ -12,9 +12,12 @@ curl -X GET \
   --data "since=1742830512000" \
   --data "rated=true" \
   --data "perfType=blitz" \
-  --data "color=white" \
+  --data "color=black" \
   --data "analysed=true" \
   --data "clocks=true" \
   --data "evals=true" \
   https://lichess.org/api/games/user/indexinator \
   > games.jsonl
+
+cat games.jsonl | \
+    jq '.'
