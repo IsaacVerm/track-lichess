@@ -20,4 +20,11 @@ curl -X GET \
   > games.jsonl
 
 cat games.jsonl | \
-    jq '.'
+    jq '[.]' \
+    > games.json
+
+cat games.json | \
+    jq '.[] | {id: .id, clocks: .clocks, analysis: .analysis, clock: .clock}' | \
+    # reading the file again with --slurp so it's not ndjson but JSON: an array of objects
+    jq -s '.' \
+    > move-times.json
