@@ -22,9 +22,3 @@ curl -X GET \
 cat games.jsonl | \
     jq -s '.' \
     > games.json
-
-cat games.json | \
-    jq '[.[] | {id, clocks, analysis: [.analysis[] | select(has("eval"))], clock}]
-    | map(.move_times = (.clocks | [range(1; length; 2) as $i | .[$i-1] - .[$i]]))
-    | map(.evaluation_loss = (.analysis | [range(1; length; 2) as $i | .[$i].eval - .[$i-1].eval]))' \
-    > move-times.json
