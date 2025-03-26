@@ -9,12 +9,13 @@ cat games.json |
     }) | map(.id as $game_id |
             .player_white as $player_white |
             .player_black as $player_black |
-            [.moves, .clocks, .evals] |
-            transpose |
-            map({game_id: $game_id,
-                player_white: $player_white,
-                player_black: $player_black,
-                move: .[0], 
-                clock: .[1],
-                eval: .[2]}))' \
-    > test.json
+                [.moves, .clocks, .evals] |
+                transpose |
+                map({game_id: $game_id,
+                    player_white: $player_white,
+                    player_black: $player_black,
+                    move: .[0], 
+                    clock: .[1],
+                    eval: .[2]})) |
+                        flatten' \
+    > move-times.json
