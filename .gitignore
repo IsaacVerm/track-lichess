@@ -1,2 +1,3 @@
-*json
-*jsonl
+*.json
+*.jsonl
+*.db
